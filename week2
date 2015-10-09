@@ -29,13 +29,13 @@ print ("Percentage for country_belowmean:" ,len(country_belowmean)/ len(df))# pe
 
 
 #Polityscore Distribution
-data1 = {'Counts':country_abovemean['polityscore'].value_counts(sort=True, dropna = False, normalize = False),
+po_data1 = {'Counts':country_abovemean['polityscore'].value_counts(sort=True, dropna = False, normalize = False),
          'Percentage': country_abovemean['polityscore'].value_counts(sort=True, dropna = False, normalize = True)} # data from country_abovemean
-data2 = {'Counts':country_belowmean['polityscore'].value_counts(sort=True, dropna = False, normalize = False),
+po_data2 = {'Counts':country_belowmean['polityscore'].value_counts(sort=True, dropna = False, normalize = False),
          'Percentage': country_belowmean['polityscore'].value_counts(sort=True, dropna = False, normalize = True)} # data from country_belowmean
 
-c1 = pd.DataFrame(data = data1)
-c2 = pd.DataFrame(data = data2)
+c1 = pd.DataFrame(data = po_data1)
+c2 = pd.DataFrame(data = po_data2)
 sum1 = country_abovemean['polityscore'].value_counts(sort=True, dropna = False, normalize = True).sum()
 sum2 = country_belowmean['polityscore'].value_counts(sort=True, dropna = False, normalize = True).sum()
 
@@ -46,3 +46,10 @@ print ('Sum:', sum1)
 print ('Polityscore distribution for country_belowmean:')
 print (c2)
 print ('Sum:', sum2)
+
+
+#Femaleemployrate Distribution
+print ('country_abovemean with femaleemployrate >=50%: ',
+       len(country_abovemean[['country','femaleemployrate']].loc[country_abovemean['femaleemployrate']>=50])/len(country_abovemean)*100, '%')
+print ('country_belowmean with femaleemployrate >=50%: ',
+       len(country_belowmean[['country','femaleemployrate']].loc[country_belowmean['femaleemployrate']>=50])/len(country_belowmean)*100,'%')
