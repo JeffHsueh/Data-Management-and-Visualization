@@ -4,27 +4,36 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("gapminder.csv", low_memory = False)
+df = pd.read_csv("gapminder.csv", low_memory = False, index_col = 0)
+df2 = pd.read_csv("country_population.csv", low_memory = False, index_col = 0)
+
 df["incomeperperson"] = df["incomeperperson"].convert_objects(convert_numeric=True)
 df["femaleemployrate"] = df["femaleemployrate"].convert_objects(convert_numeric=True)
 df["polityscore"] = df["polityscore"].convert_objects(convert_numeric=True)
 df['employrate'] = df['employrate'].convert_objects(convert_numeric=True)
-# Calulating mean for incomeperperson excluding missing data
-mean_ipp = (df["incomeperperson"].mean(skipna=True)) 
 
-country_abovemean = df.loc[df["incomeperperson"] >= mean_ipp] # countries having greater income/person than the average
-country_belowmean = df.loc[df["incomeperperson"] < mean_ipp]  # countries having less income/person than the average
+df2['Population (2014)'] = df2['Population (2014)'].convert_objects(convert_numeric=True)
+df2['Fertility Rate'] = df2['Fertility Rate'].convert_objects(convert_numeric=True)
+
+#Concatenate df and df2
+df3 =  pd.concat([df, df2], axis=1, join_axes=[df.index])
+
+# Calulating mean for incomeperperson excluding missing data
+mean_ipp = (df3["incomeperperson"].mean(skipna=True)) 
+
+country_abovemean = df3.loc[df3["incomeperperson"] >= mean_ipp] # countries having greater income/person than the average
+country_belowmean = df3.loc[df3["incomeperperson"] < mean_ipp]  # countries having less income/person than the average
 
 
 
 #Country Distribution
 print ("Counts for country_abovemean:",
-       len(country_abovemean['country']),"counts")  
+       len(country_abovemean),"counts")  
 print ("Percentage for country_abovemean:", len(country_abovemean)/ len(df))# percentage
 
 
 print ("Counts for country_belowmean:",
-       len(country_belowmean['country']), "counts") 
+       len(country_belowmean), "counts") 
 print ("Percentage for country_belowmean:" ,len(country_belowmean)/ len(df))# percentage
 
 
@@ -48,9 +57,9 @@ print (c2)
 
 ###Femaleemployrate Distribution
 print ('country_abovemean with femaleemployrate >=50%: ',
-       len(country_abovemean[['country','femaleemployrate']].loc[country_abovemean['femaleemployrate']>=50])/len(country_abovemean)*100, '%')
+       len(country_abovemean['femaleemployrate'].loc[country_abovemean['femaleemployrate']>=50])/len(country_abovemean)*100, '%')
 print ('country_belowmean with femaleemployrate >=50%: ',
-       len(country_belowmean[['country','femaleemployrate']].loc[country_belowmean['femaleemployrate']>=50])/len(country_belowmean)*100,'%')
+       len(country_belowmean['femaleemployrate'].loc[country_belowmean['femaleemployrate']>=50])/len(country_belowmean)*100,'%')
 
 
 
@@ -58,8 +67,7 @@ sub1 = country_abovemean.copy()
 sub2 = country_belowmean.copy()
 
 
-
-
+print (df3)
 ## Split into 3 groups.
 
 sub1['femalegroup3'] = pd.cut(sub1['femaleemployrate'], 3)
@@ -72,4 +80,3 @@ sub2['femalegroup3'] = pd.cut(sub2['femaleemployrate'], 3)
 c4 = sub2['femalegroup3'].value_counts(sort= False)
 print ("Female Employ Rate Distribution: (country_belowmean)")
 print (c4)
-
