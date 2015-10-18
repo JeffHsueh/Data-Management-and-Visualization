@@ -6,23 +6,23 @@ average of female employ rate in country_belowmean: 47.9008128469
 average of male employ rate in country_abovemean: 68.4641023292
 average of male employ rate in country_belowmean: 69.4814160101
 Female Employ Rate Distribution: (country_abovemean)
- (17.648, 35]     5
-(35, 52.3]      22
-(52.3, 69.6]    16
-dtype: int64
+               counts  percentage
+(17.648, 35]       5    0.098039
+(35, 52.3]        22    0.431373
+(52.3, 69.6]      16    0.313725
 Male Employ Rate Distribution: (country_abovemean)
- (51.457, 65.933]    15
-(65.933, 80.367]    21
-(80.367, 94.8]       3
-dtype: int64
+                   counts  percentage
+(51.457, 65.933]      15    0.294118
+(65.933, 80.367]      21    0.411765
+(80.367, 94.8]         3    0.058824
 Female Employ Rate Distribution: (country_belowmean)
- (12.329, 36.0333]    25
-(36.0333, 59.667]    72
-(59.667, 83.3]       26
-dtype: int64
+                    counts  percentage
+(12.329, 36.0333]      25    0.179856
+(36.0333, 59.667]      72    0.517986
+(59.667, 83.3]         26    0.187050
 Male Employ Rate Distribution: (country_belowmean)
- (42.053, 57.767]    19
-(57.767, 73.433]    48
-(73.433, 89.1]      46
-dtype: int64
+                   counts  percentage
+(42.053, 57.767]      19    0.136691
+(57.767, 73.433]      48    0.345324
+(73.433, 89.1]        46    0.330935
 >>> 
