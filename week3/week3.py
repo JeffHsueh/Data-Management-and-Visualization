@@ -40,7 +40,6 @@ print ("average of male employ rate in country_abovemean:",sub1_employ['maleempl
 print ("average of male employ rate in country_belowmean:",sub2_employ['maleemployrate'].mean())
 
 ## Split into 3 groups.
-filter_value=[0,30,50,70,90,100]
 sub1_employ['femalegroup3'] = pd.cut(sub1_employ['femaleemployrate'], 3)
 sub1_employ['malegroup3'] = pd.cut(sub1_employ['maleemployrate'], 3)
 c3 = sub1_employ['femalegroup3'].value_counts(sort= False)
