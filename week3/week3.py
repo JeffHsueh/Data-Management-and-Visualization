@@ -41,8 +41,8 @@ print ("average of male employ rate in country_belowmean:",sub2_employ['maleempl
 
 ## Split into 3 groups.
 filter_value=[0,30,50,70,90,100]
-sub1_employ['femalegroup3'] = pd.cut(sub1_employ['femaleemployrate'], 3)
-sub1_employ['malegroup3'] = pd.cut(sub1_employ['maleemployrate'], 3)
+sub1_employ['femalegroup3'] = pd.cut(sub1_employ['femaleemployrate'], bins = filter_value)
+sub1_employ['malegroup3'] = pd.cut(sub1_employ['maleemployrate'], bins = filter_value)
 c3 = sub1_employ['femalegroup3'].value_counts(sort= False)
 c3_2 = sub1_employ['femalegroup3'].value_counts(sort= False, normalize=True)
 c3_3 = pd.concat([c3, c3_2], axis=1)
@@ -54,8 +54,8 @@ c4_3.columns=['counts', 'percentage']
 print ("Female Employ Rate Distribution: (country_abovemean)\n",c3_3)
 print ("Male Employ Rate Distribution: (country_abovemean)\n",c4_3)
 
-sub2_employ['femalegroup3'] = pd.cut(sub2_employ['femaleemployrate'], 3)
-sub2_employ['malegroup3'] = pd.cut(sub2_employ['maleemployrate'], 3)
+sub2_employ['femalegroup3'] = pd.cut(sub2_employ['femaleemployrate'], bins = filter_value)
+sub2_employ['malegroup3'] = pd.cut(sub2_employ['maleemployrate'], bins = filter_value)
 c5 = sub2_employ['femalegroup3'].value_counts(sort= False)
 c5_2 = sub2_employ['femalegroup3'].value_counts(sort= False, normalize=True)
 c5_3 = pd.concat([c5, c5_2], axis=1)
