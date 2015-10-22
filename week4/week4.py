@@ -55,7 +55,7 @@ c11 = df3['INCOMEGRP4'].value_counts(sort=False, dropna=True)
 print(c11)
 
 
-# bivariate bar graph C->Q
+# bivariate bar graph
 seaborn.factorplot(x='INCOMEGRP4', y='femaleemployrate', data=df3, kind="bar", ci=None)
 plt.xlabel('income group')
 plt.ylabel('femaleemployrate')
