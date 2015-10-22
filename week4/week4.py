@@ -37,9 +37,9 @@ plt.title('Scatterplot for the Association Between polity score and female emplo
 plt.show()
 
 #Scatterplot for the Association Between polity score and income per person
-scat3 = seaborn.regplot(x="incomeperperson", y="polityscore", fit_reg=True, data=df)
-plt.xlabel('incomeperperson')
-plt.ylabel('polityscore')
+scat3 = seaborn.regplot(x="polityscore", y="incomeperperson", fit_reg=True, data=df)
+plt.xlabel('polityscore')
+plt.ylabel('incomeperperson')
 plt.title('Scatterplot for the Association Between polity score and income per person')
 plt.show()
 
@@ -50,10 +50,21 @@ df['INCOMEGRP4']=pd.qcut(df.incomeperperson, 4, labels=["1=25th%tile","2=50%tile
 c10 = df['INCOMEGRP4'].value_counts(sort=False, dropna=True)
 print(c10)
 
+df3['INCOMEGRP4']=pd.qcut(df3.incomeperperson, 4, labels=["1=25th%tile","2=50%tile","3=75%tile","4=100%tile"])
+c11 = df3['INCOMEGRP4'].value_counts(sort=False, dropna=True)
+print(c11)
+
+
 # bivariate bar graph C->Q
-seaborn.factorplot(x='INCOMEGRP4', y='femaleemployrate', data=df, kind="bar", ci=None)
+seaborn.factorplot(x='INCOMEGRP4', y='femaleemployrate', data=df3, kind="bar", ci=None)
 plt.xlabel('income group')
 plt.ylabel('femaleemployrate')
+plt.show()
+
+
+ax2 = seaborn.factorplot(x='INCOMEGRP4', y='maleemployrate', data=df3, kind="bar", ci=None)
+plt.xlabel('income group')
+plt.ylabel('maleemployrate')
 plt.show()
 
 # Calulating mean for incomeperperson
@@ -64,6 +75,9 @@ country_belowmean = df3.loc[df3["incomeperperson"] < mean_ipp]  # countries havi
 
 sub1 = country_abovemean.copy()
 sub2 = country_belowmean.copy()
+
+
+
 
 # Polity Score bar graph 
 sub1["polityscore"] = sub1["polityscore"].astype('category')
